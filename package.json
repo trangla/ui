@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "types": "./dist/types/index.d.ts",
+  "packageManager": "pnpm@9.15.1",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
