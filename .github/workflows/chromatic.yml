@@ -5,7 +5,7 @@ name: 'Chromatic Publish'
 on:
   push:
     branches:
-      - 'release/**'
+      - 'non-release/**'
       - 'main'
 
 # List of jobs
