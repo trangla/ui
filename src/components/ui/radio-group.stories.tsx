@@ -1,0 +1,42 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { Label } from 'recharts';
+import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group';
+
+const meta = {
+  title: 'UI/RadioGroup',
+  component: RadioGroup,
+  tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <div className='w-full'>
+        <Story />
+      </div>
+    ),
+  ],
+} satisfies Meta<typeof RadioGroup>;
+
+export default meta;
+
+type Story = StoryObj<typeof RadioGroup>;
+
+export const Default = {
+  args: {
+    defaultValue: 'comfortable',
+    children: [
+      <>
+        <div className='flex items-center space-x-2'>
+          <RadioGroupItem value='default' id='r1' />
+          <Label htmlFor='r1'>Default</Label>
+        </div>
+        <div className='flex items-center space-x-2'>
+          <RadioGroupItem value='comfortable' id='r2' />
+          <Label htmlFor='r2'>Comfortable</Label>
+        </div>
+        <div className='flex items-center space-x-2'>
+          <RadioGroupItem value='compact' id='r3' />
+          <Label htmlFor='r3'>Compact</Label>
+        </div>
+      </>,
+    ],
+  },
+} satisfies Story;
