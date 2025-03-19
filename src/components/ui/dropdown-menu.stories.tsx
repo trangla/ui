@@ -1,10 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 
 import { Button } from '~/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuRadioItem,
   DropdownMenuGroup,
+  DropdownMenuRadioGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuPortal,
@@ -124,5 +127,33 @@ export const Checkboxes = {
         </DropdownMenuContent>
       </>,
     ],
+  },
+} satisfies Story;
+
+const RadioDemo = () => {
+  const [position, setPosition] = useState('bottom');
+  return (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant='outline'>Open</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className='w-56'>
+          <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+            <DropdownMenuRadioItem value='top'>Top</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value='bottom'>Bottom</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value='right'>Right</DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
+  );
+};
+
+export const RadioGroup = {
+  render: () => {
+    return <RadioDemo />;
   },
 } satisfies Story;

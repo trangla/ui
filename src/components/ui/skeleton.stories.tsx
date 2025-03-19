@@ -7,8 +7,14 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className='w-full'>
+      <div className='w-full flex gap-4'>
         <Story />
+        <div className='flex items-center space-x-4'>
+          <div className='space-y-2'>
+            <Skeleton className='h-4 w-[250px]' />
+            <Skeleton className='h-4 w-[200px]' />
+          </div>
+        </div>
       </div>
     ),
   ],
@@ -26,6 +32,6 @@ export const Default = {
 
 export const Card = {
   args: {
-    className: 'h-[125px] w-[250px] rounded-xl',
+    className: 'h-[125px] w-[250px] rounded-xl ',
   },
 } satisfies Story;

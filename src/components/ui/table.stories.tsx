@@ -10,7 +10,14 @@ import {
   TableRow,
 } from '~/components/ui/table';
 
-const invoices = [
+type Invoice = {
+  invoice: string;
+  paymentStatus: 'Paid' | 'Pending' | 'Unpaid';
+  totalAmount: string;
+  paymentMethod: 'Credit Card' | 'PayPal' | 'Bank Transfer';
+};
+
+const invoices: Invoice[] = [
   {
     invoice: 'INV001',
     paymentStatus: 'Paid',
@@ -55,6 +62,36 @@ const invoices = [
   },
 ];
 
+const TableDemo = () => (
+  <Table>
+    <TableCaption>A list of your recent invoices.</TableCaption>
+    <TableHeader>
+      <TableRow>
+        <TableHead className='w-[100px]'>Invoice</TableHead>
+        <TableHead>Status</TableHead>
+        <TableHead>Method</TableHead>
+        <TableHead className='text-right'>Amount</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      {invoices.map((invoice) => (
+        <TableRow key={invoice.invoice}>
+          <TableCell className='font-medium'>{invoice.invoice}</TableCell>
+          <TableCell>{invoice.paymentStatus}</TableCell>
+          <TableCell>{invoice.paymentMethod}</TableCell>
+          <TableCell className='text-right'>{invoice.totalAmount}</TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+    <TableFooter>
+      <TableRow>
+        <TableCell colSpan={3}>Total</TableCell>
+        <TableCell className='text-right'>$2,500.00</TableCell>
+      </TableRow>
+    </TableFooter>
+  </Table>
+);
+
 const meta = {
   title: 'UI/Table',
   component: Table,
@@ -73,37 +110,5 @@ export default meta;
 type Story = StoryObj<typeof Table>;
 
 export const Default = {
-  args: {
-    children: [
-      <>
-        <TableCaption>A list of your recent invoices.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className='w-[100px]'>Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className='text-right'>Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell className='font-medium'>{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell className='text-right'>
-                {invoice.totalAmount}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className='text-right'>$2,500.00</TableCell>
-          </TableRow>
-        </TableFooter>
-      </>,
-    ],
-  },
+  render: () => <TableDemo />,
 } satisfies Story;

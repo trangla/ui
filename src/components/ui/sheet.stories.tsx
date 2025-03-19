@@ -30,215 +30,92 @@ export default meta;
 
 type Story = StoryObj<typeof Sheet>;
 
-export const Default = {
-  args: {
-    children: [
-      <>
-        <SheetTrigger asChild>
-          <Button variant='outline'>Open</Button>
-        </SheetTrigger>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when you're done.
-            </SheetDescription>
-          </SheetHeader>
-          <div className='grid gap-4 py-4'>
-            <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='name' className='text-right'>
-                Name
-              </Label>
-              <Input id='name' value='Pedro Duarte' className='col-span-3' />
-            </div>
-            <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='username' className='text-right'>
-                Username
-              </Label>
-              <Input id='username' value='@peduarte' className='col-span-3' />
-            </div>
-          </div>
-          <SheetFooter>
-            <SheetClose asChild>
-              <Button type='submit'>Save changes</Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </>,
-    ],
-  },
-} satisfies Story;
+// Reusable form content component
+const ProfileForm = () => (
+  <div className='grid gap-4 py-4'>
+    <div className='grid grid-cols-4 items-center gap-4'>
+      <Label htmlFor='name' className='text-right'>
+        Name
+      </Label>
+      <Input id='name' value='Pedro Duarte' className='col-span-3' />
+    </div>
+    <div className='grid grid-cols-4 items-center gap-4'>
+      <Label htmlFor='username' className='text-right'>
+        Username
+      </Label>
+      <Input id='username' value='@peduarte' className='col-span-3' />
+    </div>
+  </div>
+);
 
-export const SideLeft = {
-  args: {
-    children: [
-      <>
-        <SheetTrigger asChild>
-          <Button variant='outline'>left</Button>
-        </SheetTrigger>
-        <SheetContent side='left'>
-          <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when you're done.
-            </SheetDescription>
-          </SheetHeader>
-          <div className='grid gap-4 py-4'>
-            <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='name' className='text-right'>
-                Name
-              </Label>
-              <Input id='name' value='Pedro Duarte' className='col-span-3' />
-            </div>
-            <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='username' className='text-right'>
-                Username
-              </Label>
-              <Input id='username' value='@peduarte' className='col-span-3' />
-            </div>
-          </div>
-          <SheetFooter>
-            <SheetClose asChild>
-              <Button type='submit'>Save changes</Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </>,
-    ],
-  },
-} satisfies Story;
+// Base sheet content component
+const BaseSheetContent = ({
+  side,
+  title,
+  description,
+  children,
+}: {
+  side?: 'top' | 'right' | 'bottom' | 'left';
+  title?: string;
+  description?: string;
+  children?: React.ReactNode;
+}) => (
+  <SheetContent
+    side={side}
+    className={side === undefined ? 'w-[400px] sm:w-[540px]' : undefined}>
+    <SheetHeader>
+      <SheetTitle>{title}</SheetTitle>
+      <SheetDescription>{description}</SheetDescription>
+    </SheetHeader>
+    {children}
+    {children && (
+      <SheetFooter>
+        <SheetClose asChild>
+          <Button type='submit'>Save changes</Button>
+        </SheetClose>
+      </SheetFooter>
+    )}
+  </SheetContent>
+);
 
-export const SideRight = {
-  args: {
-    children: [
-      <>
-        <SheetTrigger asChild>
-          <Button variant='outline'>Right</Button>
-        </SheetTrigger>
-        <SheetContent side='right'>
-          <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when you're done.
-            </SheetDescription>
-          </SheetHeader>
-          <div className='grid gap-4 py-4'>
-            <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='name' className='text-right'>
-                Name
-              </Label>
-              <Input id='name' value='Pedro Duarte' className='col-span-3' />
-            </div>
-            <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='username' className='text-right'>
-                Username
-              </Label>
-              <Input id='username' value='@peduarte' className='col-span-3' />
-            </div>
-          </div>
-          <SheetFooter>
-            <SheetClose asChild>
-              <Button type='submit'>Save changes</Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </>,
-    ],
-  },
-} satisfies Story;
+// Story variants
+const createSheetStory = (
+  buttonText: string,
+  side?: 'top' | 'right' | 'bottom' | 'left'
+) =>
+  ({
+    args: {
+      children: [
+        <>
+          <SheetTrigger asChild>
+            <Button variant='outline'>{buttonText}</Button>
+          </SheetTrigger>
+          <BaseSheetContent
+            side={side}
+            title='Edit profile'
+            description="Make changes to your profile here. Click save when you're done.">
+            <ProfileForm />
+          </BaseSheetContent>
+        </>,
+      ],
+    },
+  }) satisfies Story;
 
-export const SideTop = {
-  args: {
-    children: [
-      <>
-        <SheetTrigger asChild>
-          <Button variant='outline'>Top</Button>
-        </SheetTrigger>
-        <SheetContent side='top'>
-          <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when you're done.
-            </SheetDescription>
-          </SheetHeader>
-          <div className='grid gap-4 py-4'>
-            <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='name' className='text-right'>
-                Name
-              </Label>
-              <Input id='name' value='Pedro Duarte' className='col-span-3' />
-            </div>
-            <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='username' className='text-right'>
-                Username
-              </Label>
-              <Input id='username' value='@peduarte' className='col-span-3' />
-            </div>
-          </div>
-          <SheetFooter>
-            <SheetClose asChild>
-              <Button type='submit'>Save changes</Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </>,
-    ],
-  },
-} satisfies Story;
-
-export const SideBottom = {
-  args: {
-    children: [
-      <>
-        <SheetTrigger asChild>
-          <Button variant='outline'>Bottom</Button>
-        </SheetTrigger>
-        <SheetContent side='bottom'>
-          <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when you're done.
-            </SheetDescription>
-          </SheetHeader>
-          <div className='grid gap-4 py-4'>
-            <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='name' className='text-right'>
-                Name
-              </Label>
-              <Input id='name' value='Pedro Duarte' className='col-span-3' />
-            </div>
-            <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='username' className='text-right'>
-                Username
-              </Label>
-              <Input id='username' value='@peduarte' className='col-span-3' />
-            </div>
-          </div>
-          <SheetFooter>
-            <SheetClose asChild>
-              <Button type='submit'>Save changes</Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </>,
-    ],
-  },
-} satisfies Story;
+export const Default = createSheetStory('Open');
+export const SideLeft = createSheetStory('Left', 'left');
+export const SideRight = createSheetStory('Right', 'right');
+export const SideTop = createSheetStory('Top', 'top');
+export const SideBottom = createSheetStory('Bottom', 'bottom');
 
 export const Size = {
   args: {
     children: [
       <>
         <SheetTrigger>Open</SheetTrigger>
-        <SheetContent className='w-[400px] sm:w-[540px]'>
-          <SheetHeader>
-            <SheetTitle>Are you absolutely sure?</SheetTitle>
-            <SheetDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </SheetDescription>
-          </SheetHeader>
-        </SheetContent>
+        <BaseSheetContent
+          title='Are you absolutely sure?'
+          description='This action cannot be undone. This will permanently delete your account and remove your data from our servers.'
+        />
       </>,
     ],
   },
