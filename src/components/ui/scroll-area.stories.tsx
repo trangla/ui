@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ScrollArea } from '~/components/ui/scroll-area';
+import { ScrollArea, ScrollBar } from '~/components/ui/scroll-area';
 import { Separator } from '~/components/ui/separator';
 
 const tags = Array.from({ length: 50 }).map(
@@ -63,3 +63,33 @@ export const works: Artwork[] = [
     art: 'https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80',
   },
 ];
+
+export const HorizontalScroll = {
+  args: {
+    className: 'w-96 whitespace-nowrap rounded-md border',
+    children: [
+      <>
+        <div className='flex w-max space-x-4 p-4'>
+          {works.map((artwork) => (
+            <figure key={artwork.artist} className='shrink-0'>
+              <div className='overflow-hidden rounded-md'>
+                <img
+                  src='https://picsum.photos/200/200'
+                  alt={`Photo by ${artwork.artist}`}
+                  className='aspect-[3/4] h-fit w-fit object-cover'
+                />
+              </div>
+              <figcaption className='pt-2 text-xs text-muted-foreground'>
+                Photo by{' '}
+                <span className='font-semibold text-foreground'>
+                  {artwork.artist}
+                </span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <ScrollBar orientation='horizontal' />
+      </>,
+    ],
+  },
+} satisfies Story;

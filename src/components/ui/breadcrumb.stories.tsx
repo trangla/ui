@@ -133,3 +133,33 @@ export const DropDown = {
     ],
   },
 } satisfies Story;
+
+export const Collapsed = {
+  args: {
+    children: [
+      <>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <a href='/'>Home</a>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbEllipsis />
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <a href='/docs/components'>Components</a>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </>,
+    ],
+  },
+};
