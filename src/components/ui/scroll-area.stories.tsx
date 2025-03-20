@@ -28,7 +28,7 @@ export const VerticalScroll = {
   args: {
     className: 'h-72 w-48 rounded-md border',
     defaultValue: 'account',
-    children: [
+    children: (
       <div className='p-4'>
         <h4 className='mb-4 text-sm font-medium leading-none'>Tags</h4>
         {tags.map((tag) => (
@@ -39,8 +39,8 @@ export const VerticalScroll = {
             <Separator className='my-2' />
           </>
         ))}
-      </div>,
-    ],
+      </div>
+    ),
   },
 } satisfies Story;
 
@@ -74,7 +74,8 @@ export const HorizontalScroll = {
             <figure key={artwork.artist} className='shrink-0'>
               <div className='overflow-hidden rounded-md'>
                 <img
-                  src='https://picsum.photos/200/200'
+                  alt=''
+                  src='artwork.art'
                   className='aspect-[3/4] h-fit w-fit object-cover'
                 />
               </div>

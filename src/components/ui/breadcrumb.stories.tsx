@@ -37,42 +37,40 @@ type Story = StoryObj<typeof Breadcrumb>;
 export const Default = {
   args: {
     children: [
-      <>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/'>Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger className='flex items-center gap-1'>
-                <BreadcrumbEllipsis className='h-4 w-4' />
-                <span className='sr-only'>Toggle menu</span>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align='start'>
-                <DropdownMenuItem>Documentation</DropdownMenuItem>
-                <DropdownMenuItem>Themes</DropdownMenuItem>
-                <DropdownMenuItem>GitHub</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/docs/components'>Components</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </>,
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href='/'>Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <DropdownMenu>
+            <DropdownMenuTrigger className='flex items-center gap-1'>
+              <BreadcrumbEllipsis className='h-4 w-4' />
+              <span className='sr-only'>Toggle menu</span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align='start'>
+              <DropdownMenuItem>Documentation</DropdownMenuItem>
+              <DropdownMenuItem>Themes</DropdownMenuItem>
+              <DropdownMenuItem>GitHub</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href='/docs/components'>Components</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>,
     ],
   },
 } satisfies Story;
 
 export const CustomSeparator = {
   args: {
-    children: [
+    children: (
       <BreadcrumbList>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -91,14 +89,14 @@ export const CustomSeparator = {
             <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
-      </BreadcrumbList>,
-    ],
+      </BreadcrumbList>
+    ),
   },
 } satisfies Story;
 
 export const DropDown = {
   args: {
-    children: [
+    children: (
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href='/'>Home</BreadcrumbLink>
@@ -125,14 +123,14 @@ export const DropDown = {
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
         </BreadcrumbItem>
-      </BreadcrumbList>,
-    ],
+      </BreadcrumbList>
+    ),
   },
 } satisfies Story;
 
 export const Collapsed = {
   args: {
-    children: [
+    children: (
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
@@ -153,7 +151,7 @@ export const Collapsed = {
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
         </BreadcrumbItem>
-      </BreadcrumbList>,
-    ],
+      </BreadcrumbList>
+    ),
   },
 };

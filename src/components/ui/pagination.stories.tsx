@@ -28,7 +28,7 @@ type Story = StoryObj<typeof Pagination>;
 
 export const Default = {
   args: {
-    children: [
+    children: (
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious href='#' />
@@ -50,7 +50,7 @@ export const Default = {
         <PaginationItem>
           <PaginationNext href='#' />
         </PaginationItem>
-      </PaginationContent>,
-    ],
+      </PaginationContent>
+    ),
   },
 } satisfies Story;

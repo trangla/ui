@@ -64,7 +64,7 @@ export const Icon = {
   args: {
     variant: 'outline',
     size: 'icon',
-    children: [<ChevronRight />],
+    children: <ChevronRight />,
   },
 } satisfies Story;
 
