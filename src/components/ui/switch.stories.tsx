@@ -22,6 +22,6 @@ type Story = StoryObj<typeof Switch>;
 export const Default = {
   args: {
     id: 'airplane-mode',
-    children: [<Label htmlFor='airplane-mode'>Airplane Mode</Label>],
+    children: <Label htmlFor='airplane-mode'>Airplane Mode</Label>,
   },
 } satisfies Story;

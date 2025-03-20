@@ -19,7 +19,6 @@ import {
   DropdownMenuTrigger,
   DropdownMenuCheckboxItem,
 } from '~/components/ui/dropdown-menu';
-// import { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu';
 
 const meta = {
   title: 'UI/DropdownMenu',
@@ -133,22 +132,20 @@ export const Checkboxes = {
 const RadioDemo = () => {
   const [position, setPosition] = useState('bottom');
   return (
-    <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant='outline'>Open</Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className='w-56'>
-          <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-            <DropdownMenuRadioItem value='top'>Top</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value='bottom'>Bottom</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value='right'>Right</DropdownMenuRadioItem>
-          </DropdownMenuRadioGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant='outline'>Open</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className='w-56'>
+        <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+          <DropdownMenuRadioItem value='top'>Top</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value='bottom'>Bottom</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value='right'>Right</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

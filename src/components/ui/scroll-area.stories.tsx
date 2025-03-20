@@ -67,7 +67,7 @@ export const works: Artwork[] = [
 export const HorizontalScroll = {
   args: {
     className: 'w-96 whitespace-nowrap rounded-md border',
-    children: [
+    children: (
       <>
         <div className='flex w-max space-x-4 p-4'>
           {works.map((artwork) => (
@@ -75,7 +75,6 @@ export const HorizontalScroll = {
               <div className='overflow-hidden rounded-md'>
                 <img
                   src='https://picsum.photos/200/200'
-                  alt={`Photo by ${artwork.artist}`}
                   className='aspect-[3/4] h-fit w-fit object-cover'
                 />
               </div>
@@ -89,7 +88,7 @@ export const HorizontalScroll = {
           ))}
         </div>
         <ScrollBar orientation='horizontal' />
-      </>,
-    ],
+      </>
+    ),
   },
 } satisfies Story;

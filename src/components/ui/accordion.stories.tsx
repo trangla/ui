@@ -6,63 +6,6 @@ import {
   AccordionTrigger,
 } from './accordion';
 
-type AccordionItemType = {
-  question: string;
-  answer: string;
-};
-
-const accordionItems: Record<string, AccordionItemType[]> = {
-  single: [
-    {
-      question: 'Is it accessible?',
-      answer: 'Yes. It adheres to the WAI-ARIA design pattern.',
-    },
-    {
-      question: 'Is it styled?',
-      answer:
-        "Yes. It comes with default styles that matches the other components' aesthetic.",
-    },
-    {
-      question: 'Is it animated?',
-      answer:
-        "Yes. It's animated by default, but you can disable it if you prefer.",
-    },
-  ],
-  multiple: [
-    {
-      question: 'Can I open multiple items?',
-      answer:
-        'Yes. Just set the type prop to "multiple" on the Accordion component.',
-    },
-    {
-      question: 'Can I customize the styling?',
-      answer: 'Yes. You can use the className prop to add custom styles.',
-    },
-    {
-      question: 'Can I disable items?',
-      answer:
-        'Yes. Use the disabled prop on AccordionItem to disable specific items.',
-    },
-  ],
-};
-
-const AccordionDemo = ({
-  items,
-  type,
-}: {
-  items: AccordionItemType[];
-  type: 'single' | 'multiple';
-}) => (
-  <Accordion type={type} collapsible={type === 'single'}>
-    {items.map((item, index) => (
-      <AccordionItem key={`item-${index + 1}`} value={`item-${index + 1}`}>
-        <AccordionTrigger>{item.question}</AccordionTrigger>
-        <AccordionContent>{item.answer}</AccordionContent>
-      </AccordionItem>
-    ))}
-  </Accordion>
-);
-
 const meta = {
   title: 'UI/Accordion',
   component: Accordion,
@@ -80,11 +23,55 @@ export default meta;
 type Story = StoryObj<typeof Accordion>;
 
 export const Default = {
-  render: () => <AccordionDemo items={accordionItems.single} type='single' />,
+  args: {
+    type: 'single' as const,
+    collapsible: true,
+    children: [
+      <AccordionItem key='item-1' value='item-1'>
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
+      </AccordionItem>,
+      <AccordionItem key='item-2' value='item-2'>
+        <AccordionTrigger>Is it styled?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It comes with default styles that matches the other components'
+          aesthetic.
+        </AccordionContent>
+      </AccordionItem>,
+      <AccordionItem key='item-3' value='item-3'>
+        <AccordionTrigger>Is it animated?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It's animated by default, but you can disable it if you prefer.
+        </AccordionContent>
+      </AccordionItem>,
+    ],
+  },
 } satisfies Story;
 
 export const Multiple = {
-  render: () => (
-    <AccordionDemo items={accordionItems.multiple} type='multiple' />
-  ),
+  args: {
+    type: 'multiple' as const,
+    children: [
+      <AccordionItem key='item-1' value='item-1'>
+        <AccordionTrigger>Can I open multiple items?</AccordionTrigger>
+        <AccordionContent>
+          Yes. Just set the type prop to "multiple" on the Accordion component.
+        </AccordionContent>
+      </AccordionItem>,
+      <AccordionItem key='item-2' value='item-2'>
+        <AccordionTrigger>Can I customize the styling?</AccordionTrigger>
+        <AccordionContent>
+          Yes. You can use the className prop to add custom styles.
+        </AccordionContent>
+      </AccordionItem>,
+      <AccordionItem key='item-3' value='item-3'>
+        <AccordionTrigger>Can I disable items?</AccordionTrigger>
+        <AccordionContent>
+          Yes. Use the disabled prop on AccordionItem to disable specific items.
+        </AccordionContent>
+      </AccordionItem>,
+    ],
+  },
 } satisfies Story;

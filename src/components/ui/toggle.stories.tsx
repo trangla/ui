@@ -31,38 +31,38 @@ export const Default = {
 export const Outline = {
   args: {
     variant: 'outline',
-    children: [<Italic />],
+    children: <Italic />,
   },
 } satisfies Story;
 
 export const WithText = {
   args: {
-    children: [
+    children: (
       <Toggle aria-label='Toggle italic'>
         <Italic />
         Italic
-      </Toggle>,
-    ],
+      </Toggle>
+    ),
   },
 } satisfies Story;
 
 export const Small = {
   args: {
     size: 'sm',
-    children: [<Italic />],
+    children: <Italic />,
   },
 } satisfies Story;
 
 export const Large = {
   args: {
     size: 'lg',
-    children: [<Italic />],
+    children: <Italic />,
   },
 } satisfies Story;
 
 export const Disabled = {
   args: {
     disabled: true,
-    children: [<Underline className='h-4 w-4' />],
+    children: <Underline className='h-4 w-4' />,
   },
 } satisfies Story;
